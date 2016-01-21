@@ -47,8 +47,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
         
+        filteredArray = dataArray.filter({ (country) -> Bool in
+            let countryText: NSString = country
+            
+            return countryText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location != NSNotFound
+        })
+        
+        tableView.reloadData()
     }
+    
+    // MARK: - UISearchBarDelegate
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = true
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+    
     
     // MARK: - UITableViewDataSource
 
