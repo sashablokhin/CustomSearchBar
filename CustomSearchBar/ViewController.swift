@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate, CustomSearchControllerDelegate {
 
     @IBOutlet var tableView: UITableView!
     
@@ -49,6 +49,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func configureCustomSearchController() {
         customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.orangeColor(), searchBarTintColor: UIColor.blackColor())
         
+        customSearchController.customDelegate = self
+        
         customSearchController.customSearchBar.placeholder = "Search in this awesome bar..."
         tableView.tableHeaderView = customSearchController.customSearchBar
     }
@@ -86,6 +88,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         searchController.searchBar.resignFirstResponder()
+    }
+    
+    
+    // MARK: - CustomSearchControllerDelegate
+    
+    func didStartSearching() {
+        shouldShowSearchResults = true
+        tableView.reloadData()
+    }
+    
+    func didTapOnSearchButton() {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+    }
+    
+    func didTapOnCancelButton() {
+        shouldShowSearchResults = false
+        tableView.reloadData()
+    }
+    
+    func didChangeSearchText(searchText: String) {
+        filteredArray = dataArray.filter({ (country) -> Bool in
+            let countryText: NSString = country
+            
+            return countryText.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location != NSNotFound
+        })
+        
+        tableView.reloadData()
     }
     
     

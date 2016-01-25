@@ -8,10 +8,22 @@
 
 import UIKit
 
-class CustomSearchController: UISearchController {
+protocol CustomSearchControllerDelegate {
+    func didStartSearching()
+    
+    func didTapOnSearchButton()
+    
+    func didTapOnCancelButton()
+    
+    func didChangeSearchText(searchText: String)
+}
+
+class CustomSearchController: UISearchController, UISearchBarDelegate {
     
     var customSearchBar: CustomSearchBar!
 
+    var customDelegate: CustomSearchControllerDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,8 +58,30 @@ class CustomSearchController: UISearchController {
         customSearchBar.tintColor = textColor
         customSearchBar.showsBookmarkButton = false
         customSearchBar.showsCancelButton = true
+        
+        customSearchBar.delegate = self
     }
 
+    // MARK: - UISearchBarDelegate
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        customDelegate.didStartSearching()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        customSearchBar.resignFirstResponder()
+        customDelegate.didTapOnSearchButton()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        customSearchBar.resignFirstResponder()
+        customDelegate.didTapOnCancelButton()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        customDelegate.didChangeSearchText(searchText)
+    }
+    
     /*
     // MARK: - Navigation
 
