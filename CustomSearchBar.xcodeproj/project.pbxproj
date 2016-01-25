@@ -13,6 +13,7 @@
 		ABA117BA1C4E6A84003BD040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA117B91C4E6A84003BD040 /* Assets.xcassets */; };
 		ABA117BD1C4E6A84003BD040 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA117BB1C4E6A84003BD040 /* LaunchScreen.storyboard */; };
 		ABA117C51C4E6DDF003BD040 /* countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABA117C41C4E6DDF003BD040 /* countries.txt */; };
+		ABA117C71C5125D0003BD040 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA117C61C5125CF003BD040 /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		ABA117BC1C4E6A84003BD040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABA117BE1C4E6A84003BD040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABA117C41C4E6DDF003BD040 /* countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countries.txt; sourceTree = "<group>"; };
+		ABA117C61C5125CF003BD040 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				ABA117B21C4E6A84003BD040 /* AppDelegate.swift */,
 				ABA117B41C4E6A84003BD040 /* ViewController.swift */,
+				ABA117C61C5125CF003BD040 /* CustomSearchBar.swift */,
 				ABA117B61C4E6A84003BD040 /* Main.storyboard */,
 				ABA117C41C4E6DDF003BD040 /* countries.txt */,
 				ABA117B91C4E6A84003BD040 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			files = (
 				ABA117B51C4E6A84003BD040 /* ViewController.swift in Sources */,
 				ABA117B31C4E6A84003BD040 /* AppDelegate.swift in Sources */,
+				ABA117C71C5125D0003BD040 /* CustomSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
