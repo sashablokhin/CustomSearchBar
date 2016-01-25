@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var tableView: UITableView!
     
     var searchController: UISearchController!
+    var customSearchController: CustomSearchController!
     
     var dataArray = [String]()
     
@@ -24,7 +25,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loadListOfCountries()
-        configureSearchController()
+        //configureSearchController()
+        configureCustomSearchController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +44,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchController.searchBar.delegate = self
         
         tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func configureCustomSearchController() {
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.orangeColor(), searchBarTintColor: UIColor.blackColor())
+        
+        customSearchController.customSearchBar.placeholder = "Search in this awesome bar..."
+        tableView.tableHeaderView = customSearchController.customSearchBar
     }
     
     // MARK: - UISearchResultsUpdating
